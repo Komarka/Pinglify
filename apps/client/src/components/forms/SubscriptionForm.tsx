@@ -85,6 +85,14 @@ export const SubscriptionForm = ({
                   type="number"
                   onInput={(e: React.ChangeEvent<HTMLInputElement>) => {
                     e.target.value = e.target.value.replace(/[^0-9.]/g, "");
+
+                    if ((e.target.value.match(/\./g) || []).length > 1) {
+                      e.target.value = e.target.value.slice(0, -1);
+                    }
+
+                    if (e.target.value.startsWith(".")) {
+                      e.target.value = e.target.value.slice(1);
+                    }
                   }}
                 />
                 <Text fontSize="x-small" color="gray.400" mt={1}>

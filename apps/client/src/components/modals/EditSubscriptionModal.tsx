@@ -5,6 +5,7 @@ import {
   ModalBody,
   ModalCloseButton,
   useToast,
+  ModalOverlay,
 } from "@chakra-ui/react";
 import { SubscriptionFormValues } from "../forms/schemas";
 import { SubscriptionForm } from "../forms/SubscriptionForm";
@@ -87,7 +88,14 @@ export const EditSubscriptionModal = ({
   }
 
   return (
-    <Modal isOpen={isOpen} onClose={handleClose} isCentered size="sm">
+    <Modal
+      closeOnOverlayClick={false}
+      isOpen={isOpen}
+      onClose={handleClose}
+      isCentered
+      size="sm"
+    >
+      <ModalOverlay bg="rgba(42, 29, 78, 0.8)" backdropFilter="blur(10px)" />
       <ModalContent bg="#2A1D4E" color="white">
         <ModalHeader>Edit Subscription</ModalHeader>
         <ModalCloseButton />

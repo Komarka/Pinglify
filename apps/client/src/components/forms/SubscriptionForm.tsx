@@ -79,7 +79,14 @@ export const SubscriptionForm = ({
                     *
                   </Text>
                 </FormLabel>
-                <Input {...field} placeholder="12.99" type="number" />
+                <Input
+                  {...field}
+                  placeholder="12.99"
+                  type="number"
+                  onInput={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    e.target.value = e.target.value.replace(/[^0-9.]/g, "");
+                  }}
+                />
                 <Text fontSize="x-small" color="gray.400" mt={1}>
                   In USD
                 </Text>

@@ -45,7 +45,7 @@ export const SubscriptionItem = ({
             alignItems="start"
             justifyContent="start"
             ml={4}
-            minWidth="140px"
+            minWidth="160px"
           >
             <Heading size="sm" color="white">
               {name}
@@ -71,7 +71,10 @@ export const SubscriptionItem = ({
             title="Edit subscription"
           />
           <IconButton
-            onClick={onDeleteSubscription(subscription)}
+            onClick={(e) => {
+              e.stopPropagation();
+              onDeleteSubscription(subscription)();
+            }}
             size="md"
             variant="surface"
             aria-label="Delete"

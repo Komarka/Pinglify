@@ -31,8 +31,14 @@ export const ConfirmationDialog = ({
   isLoading = false,
 }: Props) => {
   return (
-    <Modal size="sm" isOpen={isOpen} onClose={onClose} isCentered>
-      <ModalOverlay />
+    <Modal
+      closeOnOverlayClick={false}
+      size="sm"
+      isOpen={isOpen}
+      onClose={onClose}
+      isCentered
+    >
+      <ModalOverlay bg="rgba(42, 29, 78, 0.8)" backdropFilter="blur(10px)" />
       <ModalContent bg="#2A1D4E" color="white">
         <ModalHeader>{title}</ModalHeader>
         <ModalBody>

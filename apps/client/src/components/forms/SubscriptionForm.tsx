@@ -83,15 +83,20 @@ export const SubscriptionForm = ({
                   {...field}
                   placeholder="12.99"
                   type="number"
-                  onInput={(e: React.ChangeEvent<HTMLInputElement>) => {
-                    e.target.value = e.target.value.replace(/[^0-9.]/g, "");
-
-                    if ((e.target.value.match(/\./g) || []).length > 1) {
-                      e.target.value = e.target.value.slice(0, -1);
+                  onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
+                    if (
+                      !/[0-9.]/.test(e.key) &&
+                      e.key !== "Backspace" &&
+                      e.key !== "Delete" &&
+                      e.key !== "ArrowLeft" &&
+                      e.key !== "ArrowRight" &&
+                      e.key !== "Tab"
+                    ) {
+                      e.preventDefault();
                     }
 
-                    if (e.target.value.startsWith(".")) {
-                      e.target.value = e.target.value.slice(1);
+                    if (e.key === "." && field.value.includes(".")) {
+                      e.preventDefault();
                     }
                   }}
                 />

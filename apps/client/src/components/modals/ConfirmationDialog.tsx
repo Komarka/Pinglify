@@ -38,7 +38,7 @@ export const ConfirmationDialog = ({
       onClose={onClose}
       isCentered
     >
-      <ModalOverlay bg="rgba(42, 29, 78, 0.8)" backdropFilter="blur(10px)" />
+      <ModalOverlay bg="transparent" backdropFilter="blur(10px)" />
       <ModalContent bg="#2A1D4E" color="white">
         <ModalHeader>{title}</ModalHeader>
         <ModalBody>

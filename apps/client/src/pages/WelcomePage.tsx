@@ -46,6 +46,11 @@ export const WelcomePage = () => {
           width={100}
           height={100}
           animation={`${ringAnimation} .3s ease-in-out 1s`}
+          css={{
+            willChange: "transform",
+            transform: "translateZ(0)",
+            backfaceVisibility: "hidden",
+          }}
         />
       </Box>
     </Fade>

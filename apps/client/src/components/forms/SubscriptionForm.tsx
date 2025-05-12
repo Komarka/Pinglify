@@ -103,6 +103,12 @@ export const SubscriptionForm = ({
                   {...field}
                   type="date"
                   min={format(addDays(new Date(), 2), "yyyy-MM-dd")}
+                  onChange={(e) => {
+                    form.setFieldValue(field.name, e.target.value);
+                  }}
+                  onBlur={() => {
+                    form.setFieldTouched(field.name, true);
+                  }}
                 />
                 <FormErrorMessage>{form.errors.nextPayment}</FormErrorMessage>
               </FormControl>

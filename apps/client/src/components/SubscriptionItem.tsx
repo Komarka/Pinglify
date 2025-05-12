@@ -35,6 +35,7 @@ export const SubscriptionItem = ({
       justifyContent="space-between"
       alignItems="center"
       boxShadow="md"
+      onClick={onEditSubscription(subscription)}
     >
       <Flex justifyItems="space-between" w="100%">
         <Flex align="center">
@@ -44,6 +45,7 @@ export const SubscriptionItem = ({
             alignItems="start"
             justifyContent="start"
             ml={4}
+            minWidth="140px"
           >
             <Heading size="sm" color="white">
               {name}

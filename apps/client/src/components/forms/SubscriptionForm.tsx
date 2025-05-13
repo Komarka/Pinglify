@@ -124,7 +124,17 @@ export const SubscriptionForm = ({
                   type="date"
                   min={format(addDays(new Date(), 2), "yyyy-MM-dd")}
                   onChange={(e) => {
-                    form.setFieldValue(field.name, e.target.value);
+                    const selectedDate = new Date(e.target.value);
+                    const minDate = addDays(new Date(), 2);
+
+                    if (selectedDate < minDate) {
+                      form.setFieldValue(
+                        field.name,
+                        format(minDate, "yyyy-MM-dd")
+                      );
+                    } else {
+                      form.setFieldValue(field.name, e.target.value);
+                    }
                   }}
                   onBlur={() => {
                     form.setFieldTouched(field.name, true);

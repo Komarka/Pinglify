@@ -22,7 +22,7 @@ export const SubscriptionItem = ({
   const { name, price, nextPayment } = subscription;
 
   const formattedNextPayment = nextPayment
-    ? format(new Date(nextPayment), "MMM d")
+    ? format(new Date(nextPayment), "MMM d, yyyy")
     : "N/A";
 
   return (
@@ -45,7 +45,7 @@ export const SubscriptionItem = ({
             alignItems="start"
             justifyContent="start"
             ml={4}
-            minWidth="160px"
+            minWidth="180px"
           >
             <Heading size="sm" color="white">
               {name}

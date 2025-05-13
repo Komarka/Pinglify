@@ -18,7 +18,7 @@ export class BotUpdate {
           [
             {
               text: 'Test app',
-              url: 'https://example.com', // Replace with your desired URL
+              url: 'https://583c-84-40-152-215.ngrok-free.app',
             },
           ],
         ],

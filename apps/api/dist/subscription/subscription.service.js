@@ -26,12 +26,14 @@ let SubscriptionService = SubscriptionService_1 = class SubscriptionService {
         this.logger = new common_1.Logger(SubscriptionService_1.name);
     }
     async create(dto) {
+        this.syncNextPaymentDate(dto.nextPayment);
         return this.subscriptionRepository.create(dto);
     }
     async findAll(userId) {
         return this.subscriptionRepository.findAll(userId);
     }
     async update(id, dto) {
+        this.syncNextPaymentDate(dto.nextPayment);
         return this.subscriptionRepository.update(id, dto);
     }
     async delete(id) {
@@ -60,6 +62,18 @@ let SubscriptionService = SubscriptionService_1 = class SubscriptionService {
             }
         }
     }
+    async syncNextPaymentDate(nextPayment) {
+        this.logger.log(`Syncing next payment date for subscriptions with next payment date ${nextPayment}`);
+        if (nextPayment) {
+            const nextPaymentDate = new Date(nextPayment);
+            const now = new Date();
+            const isToday = nextPaymentDate.toDateString() === now.toDateString();
+            const isAfter10AM = now.getHours() >= 10;
+            if (isToday && isAfter10AM) {
+                await this.sendUpcomingPaymentNotifications();
+            }
+        }
+    }
     async notifyUser(subscription) {
         this.logger.log(`Notifying user ${subscription.userId} about upcoming transaction for subscription "${subscription.name}".`);
         const message = `Reminder: Your subscription "${subscription.name}" will be charged in 2 days. Amount: $${subscription.price}.`;
@@ -75,7 +89,7 @@ let SubscriptionService = SubscriptionService_1 = class SubscriptionService {
 };
 exports.SubscriptionService = SubscriptionService;
 __decorate([
-    (0, schedule_1.Cron)('0 10-20 * * *', { name: consts_1.CRON_NOTIFICATION_JOB }),
+    (0, schedule_1.Cron)('0 10 * * *', { name: consts_1.CRON_NOTIFICATION_JOB }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)

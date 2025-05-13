@@ -15,5 +15,6 @@ export declare class SubscriptionService {
     delete(id: string): Promise<void>;
     updateExpiredSubscription(subscription: Subscription): Promise<void>;
     sendUpcomingPaymentNotifications(): Promise<void>;
+    syncNextPaymentDate(nextPayment: Date): Promise<void>;
     notifyUser(subscription: Subscription): Promise<void>;
 }

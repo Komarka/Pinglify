@@ -14,6 +14,7 @@ const config_1 = require("@nestjs/config");
 const bot_module_1 = require("./bot/bot.module");
 const user_module_1 = require("./user/user.module");
 const bot_service_1 = require("./bot/bot.service");
+const app_controller_1 = require("./app.controller");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -26,6 +27,7 @@ exports.AppModule = AppModule = __decorate([
             bot_module_1.BotModule,
             user_module_1.UserModule,
         ],
+        controllers: [app_controller_1.AppController],
         providers: [bot_service_1.BotService],
     })
 ], AppModule);

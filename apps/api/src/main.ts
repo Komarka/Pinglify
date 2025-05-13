@@ -5,13 +5,13 @@ import { ValidationPipe } from '@nestjs/common';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  const allowedOrigins = [
-    'http://localhost:5173',
-    'https://pinglify.netlify.app',
-  ];
+  // const allowedOrigins = [
+  //   'http://localhost:5173',
+  //   'https://pinglify.netlify.app',
+  // ];
 
   app.enableCors({
-    origin: allowedOrigins,
+    origin: '*',
     credentials: true,
   });
 

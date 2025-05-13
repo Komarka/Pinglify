@@ -23,6 +23,7 @@ export class SubscriptionService {
   ) {}
 
   async create(dto: CreateSubscriptionDto): Promise<Subscription> {
+    this.syncNextPaymentDate(dto.nextPayment);
     return this.subscriptionRepository.create(dto);
   }
 
@@ -31,6 +32,7 @@ export class SubscriptionService {
   }
 
   async update(id: string, dto: UpdateSubscriptionDto): Promise<Subscription> {
+    this.syncNextPaymentDate(dto.nextPayment);
     return this.subscriptionRepository.update(id, dto);
   }
 
@@ -74,6 +76,24 @@ export class SubscriptionService {
         });
 
         await this.updateExpiredSubscription(subscription);
+      }
+    }
+  }
+
+  async syncNextPaymentDate(nextPayment: Date) {
+    this.logger.log(
+      `Syncing next payment date for subscriptions with next payment date ${nextPayment}`,
+    );
+
+    if (nextPayment) {
+      const nextPaymentDate = new Date(nextPayment);
+      const now = new Date();
+
+      const isToday = nextPaymentDate.toDateString() === now.toDateString();
+      const isAfter10AM = now.getHours() >= 10;
+
+      if (isToday && isAfter10AM) {
+        await this.sendUpcomingPaymentNotifications();
       }
     }
   }

@@ -5,7 +5,7 @@ import { Cron } from '@nestjs/schedule';
 import { Subscription } from '@prisma/client';
 import { BotService } from 'src/bot/bot.service';
 import { UserService } from 'src/user/user.service';
-import { addMonths } from 'date-fns';
+import { addMonths, subDays } from 'date-fns';
 import {
   CreateSubscriptionDto,
   UpdateSubscriptionDto,
@@ -89,10 +89,14 @@ export class SubscriptionService {
       const nextPaymentDate = new Date(nextPayment);
       const now = new Date();
 
-      const isToday = nextPaymentDate.toDateString() === now.toDateString();
+      const twoDaysBeforeNextPayment = subDays(nextPaymentDate, 2);
+
+      const isTwoDaysBefore =
+        twoDaysBeforeNextPayment.toDateString() === now.toDateString();
+
       const isAfter10AM = now.getHours() >= 10;
 
-      if (isToday && isAfter10AM) {
+      if (isTwoDaysBefore && isAfter10AM) {
         await this.sendUpcomingPaymentNotifications();
       }
     }

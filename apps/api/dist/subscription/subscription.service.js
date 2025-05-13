@@ -67,9 +67,10 @@ let SubscriptionService = SubscriptionService_1 = class SubscriptionService {
         if (nextPayment) {
             const nextPaymentDate = new Date(nextPayment);
             const now = new Date();
-            const isToday = nextPaymentDate.toDateString() === now.toDateString();
+            const twoDaysBeforeNextPayment = (0, date_fns_1.subDays)(nextPaymentDate, 2);
+            const isTwoDaysBefore = twoDaysBeforeNextPayment.toDateString() === now.toDateString();
             const isAfter10AM = now.getHours() >= 10;
-            if (isToday && isAfter10AM) {
+            if (isTwoDaysBefore && isAfter10AM) {
                 await this.sendUpcomingPaymentNotifications();
             }
         }

@@ -15,7 +15,7 @@ import {
   SubscriptionFormValues,
   subscriptionValidationSchema,
 } from "./schemas";
-import { addDays, format, set } from "date-fns";
+import { addDays, format } from "date-fns";
 import Select from "react-select";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { ERROR_MESSAGE } from "../../hooks/queries/consts";

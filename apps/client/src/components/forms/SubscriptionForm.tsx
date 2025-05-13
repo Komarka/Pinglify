@@ -135,7 +135,6 @@ export const SubscriptionForm = ({
                     } else {
                       form.setFieldValue(field.name, e.target.value);
                     }
-                    e.target.blur();
                   }}
                   onBlur={() => {
                     form.setFieldTouched(field.name, true);

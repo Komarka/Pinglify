@@ -17,7 +17,7 @@ export class BotUpdate {
         inline_keyboard: [
           [
             {
-              text: 'Test mini app',
+              text: 'Test app',
               url: 'https://example.com', // Replace with your desired URL
             },
           ],

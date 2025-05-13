@@ -13,7 +13,7 @@ export const SubscriptionItemSkeleton = () => {
       boxShadow="md"
     >
       <Flex justify="space-between" w="100%">
-        <Flex align="flex-start">
+        <Flex align="flex-start" minWidth="190px">
           <SkeletonCircle size="10" />
           <Box ml={3}>
             <Skeleton height="16px" width="80px" mb={2} />

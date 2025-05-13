@@ -26,15 +26,17 @@ let SubscriptionService = SubscriptionService_1 = class SubscriptionService {
         this.logger = new common_1.Logger(SubscriptionService_1.name);
     }
     async create(dto) {
+        const result = await this.subscriptionRepository.create(dto);
         await this.syncNextPaymentDate(dto.nextPayment);
-        return this.subscriptionRepository.create(dto);
+        return result;
     }
     async findAll(userId) {
         return this.subscriptionRepository.findAll(userId);
     }
     async update(id, dto) {
+        const result = await this.subscriptionRepository.update(id, dto);
         await this.syncNextPaymentDate(dto.nextPayment);
-        return this.subscriptionRepository.update(id, dto);
+        return result;
     }
     async delete(id) {
         return this.subscriptionRepository.delete(id);

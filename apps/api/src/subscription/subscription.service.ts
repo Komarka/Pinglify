@@ -23,8 +23,9 @@ export class SubscriptionService {
   ) {}
 
   async create(dto: CreateSubscriptionDto): Promise<Subscription> {
+    const result = await this.subscriptionRepository.create(dto);
     await this.syncNextPaymentDate(dto.nextPayment);
-    return this.subscriptionRepository.create(dto);
+    return result;
   }
 
   async findAll(userId: string): Promise<Subscription[]> {
@@ -32,8 +33,9 @@ export class SubscriptionService {
   }
 
   async update(id: string, dto: UpdateSubscriptionDto): Promise<Subscription> {
+    const result = await this.subscriptionRepository.update(id, dto);
     await this.syncNextPaymentDate(dto.nextPayment);
-    return this.subscriptionRepository.update(id, dto);
+    return result;
   }
 
   async delete(id: string): Promise<void> {

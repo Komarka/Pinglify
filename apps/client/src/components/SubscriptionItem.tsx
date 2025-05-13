@@ -45,7 +45,7 @@ export const SubscriptionItem = ({
             alignItems="start"
             justifyContent="start"
             ml={4}
-            minWidth="180px"
+            minWidth="190px"
           >
             <Heading size="sm" color="white">
               {name}

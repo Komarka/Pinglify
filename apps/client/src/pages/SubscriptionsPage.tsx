@@ -100,7 +100,7 @@ export const SubscriptionsPage = ({ userId, setIsExploding }: Props) => {
     }
   }, [isSuccess, toast]);
 
-  if (loading || isLoadingDelete) {
+  if (loading) {
     return (
       <Fade
         in

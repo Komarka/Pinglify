@@ -1,4 +1,4 @@
-import { Update, Start, Ctx } from 'nestjs-telegraf';
+import { Update, Start, Ctx, Command } from 'nestjs-telegraf';
 import { Context } from 'telegraf';
 
 @Update()
@@ -8,5 +8,21 @@ export class BotUpdate {
     await ctx.reply(
       'Hey! Welcome to the system 👋 You can press "Subscriptions" button to see and manage your subscriptions',
     );
+  }
+
+  @Command('test')
+  async onTest(@Ctx() ctx: Context) {
+    await ctx.reply('Here is your test button:', {
+      reply_markup: {
+        inline_keyboard: [
+          [
+            {
+              text: 'Test mini app',
+              url: 'https://example.com', // Replace with your desired URL
+            },
+          ],
+        ],
+      },
+    });
   }
 }

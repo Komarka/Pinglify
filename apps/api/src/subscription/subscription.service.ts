@@ -23,7 +23,7 @@ export class SubscriptionService {
   ) {}
 
   async create(dto: CreateSubscriptionDto): Promise<Subscription> {
-    this.syncNextPaymentDate(dto.nextPayment);
+    await this.syncNextPaymentDate(dto.nextPayment);
     return this.subscriptionRepository.create(dto);
   }
 
@@ -32,7 +32,7 @@ export class SubscriptionService {
   }
 
   async update(id: string, dto: UpdateSubscriptionDto): Promise<Subscription> {
-    this.syncNextPaymentDate(dto.nextPayment);
+    await this.syncNextPaymentDate(dto.nextPayment);
     return this.subscriptionRepository.update(id, dto);
   }
 

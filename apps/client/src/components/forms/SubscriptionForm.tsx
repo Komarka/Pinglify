@@ -123,6 +123,7 @@ export const SubscriptionForm = ({
                   {...field}
                   type="date"
                   min={format(addDays(new Date(), 2), "yyyy-MM-dd")}
+                  defaultValue={format(addDays(new Date(), 2), "yyyy-MM-dd")}
                   onChange={(e) => {
                     const selectedDate = new Date(e.target.value);
                     const minDate = addDays(new Date(), 2);

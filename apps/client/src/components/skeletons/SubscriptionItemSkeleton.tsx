@@ -11,9 +11,10 @@ export const SubscriptionItemSkeleton = () => {
       justifyContent="space-between"
       alignItems="center"
       boxShadow="md"
+      minWidth="378px"
     >
       <Flex justify="space-between" w="100%">
-        <Flex align="flex-start" minWidth="190px">
+        <Flex align="flex-start">
           <SkeletonCircle size="10" />
           <Box ml={3}>
             <Skeleton height="16px" width="80px" mb={2} />

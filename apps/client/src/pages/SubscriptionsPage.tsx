@@ -1,6 +1,4 @@
 import {
-  Alert,
-  AlertIcon,
   Box,
   Button,
   Fade,
@@ -164,24 +162,16 @@ export const SubscriptionsPage = ({ userId, setIsExploding }: Props) => {
           ))}
         </Flex>
         <Box position="fixed" bottom="0" left="0" width="100%" zIndex="10">
-          {data?.length === 3 ? (
-            <Alert status="info">
-              <AlertIcon />
-              You can only add up to 3 subscriptions during the alpha version.
-              Thank you for your understanding!
-            </Alert>
-          ) : (
-            <Button
-              colorScheme="purple"
-              type="submit"
-              width="100%"
-              onClick={onOpen}
-              isLoading={loading}
-              leftIcon={<AddIcon />}
-            >
-              Add Subscription
-            </Button>
-          )}
+          <Button
+            colorScheme="purple"
+            type="submit"
+            width="100%"
+            onClick={onOpen}
+            isLoading={loading}
+            leftIcon={<AddIcon />}
+          >
+            Add Subscription
+          </Button>
         </Box>
       </Box>
       {userId && (
